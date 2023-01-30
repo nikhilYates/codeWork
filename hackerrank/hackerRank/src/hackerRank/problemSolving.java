@@ -1,5 +1,6 @@
 package hackerRank;
 import java.util.*;
+import java.math.BigInteger;
 
 public class problemSolving {
 	
@@ -53,7 +54,18 @@ public class problemSolving {
 	    
 	    return records;
 
-	    }  
+	    }
+	
+	public static void extraLongFactorials(int n) {
+	    // Write your code here
+	    BigInteger bigFact = BigInteger.ONE;
+	    
+	    for(int i = n; i > 0; i--) {
+	        bigFact = bigFact.multiply(BigInteger.valueOf(i));
+	    }
+	    System.out.println(bigFact);
+
+	    }
 	
 
 }
