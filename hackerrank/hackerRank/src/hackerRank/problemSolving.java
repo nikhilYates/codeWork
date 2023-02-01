@@ -6,8 +6,27 @@ public class problemSolving {
 	
 	public static void main(String[] args) {
 		
-		whereDoItFit();
-		numProgression(2, 4, 3, 1);
+		List<String> str1 = new ArrayList<String>();
+		str1.add("ava");
+		str1.add("ava");
+		str1.add("av");
+		str1.add("bb");
+		str1.add("corn");
+		
+		List<String> queryStr = new ArrayList<String>();
+		
+		queryStr.add("aba");
+		queryStr.add("ava");
+		queryStr.add("bb");
+		queryStr.add("corn");
+		
+		List<Integer> countStr = new ArrayList<Integer>();
+		
+		countStr = matchingStrings(str1, queryStr);
+		System.out.println(countStr);
+		
+//		whereDoItFit();
+//		numProgression(2, 4, 3, 1);
 	}
 	
 	public static String numProgression(int v1, int x1, int v2, int x2) {
@@ -104,6 +123,24 @@ public class problemSolving {
 	        }
 	        
 	        return revArr;
+	    }
+	
+	public static List<Integer> matchingStrings(List<String> stringList, List<String> queries) {
+	    // Write your code here
+	    List<Integer> occurences = new ArrayList<Integer>();
+	    int count = 0;
+	    for(String x : queries) {
+	        for(String y : stringList) {
+	            if(x == y) {
+	                count++;
+	            }
+	        }
+	        occurences.add(count);
+	        count = 0;
+	    }
+	    
+	    return occurences;
+
 	    }
 	
 
