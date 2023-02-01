@@ -37,6 +37,7 @@ public class problemSolving {
 		minMax.add(1);
 		
 		miniMaxSum(minMax);
+		System.out.println(timeConversion("11:01:45PM"));
 	}
 	
 	public static String numProgression(int v1, int x1, int v2, int x2) {
@@ -173,6 +174,30 @@ public class problemSolving {
 	    System.out.println(minSum + " " + maxSum);
 	    
 
+	    }
+	public static String timeConversion(String s) {
+	    // Write your code here
+	    
+	    int newHour;
+	    int oldHour = Integer.parseInt(s.substring(0, 2));
+	    System.out.println("old hour = " + oldHour);
+	        if(s.endsWith("AM")){
+	            if(oldHour == 12) {
+	                return "00" + s.substring(2, 8);
+	            }
+	            else {
+	                return s.substring(0, 8);
+	            }
+	        }
+	        else {
+	            if(oldHour == 12) {
+	                return s.substring(0, 8);
+	            }
+	            else {
+	                newHour = oldHour + 12;
+	                return newHour + s.substring(2, 8);
+	            }
+	        }
 	    }
 	
 
