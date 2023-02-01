@@ -136,23 +136,23 @@ public class problemSolving {
 	        return revArr;
 	    }
 	
-	public static List<Integer> matchingStrings(List<String> stringList, List<String> queries) {
-	    // Write your code here
-	    List<Integer> occurences = new ArrayList<Integer>();
-	    int count = 0;
-	    for(String x : queries) {
-	        for(String y : stringList) {
-	            if(x == y) {
-	                count++;
-	            }
-	        }
-	        occurences.add(count);
-	        count = 0;
-	    }
-	    
-	    return occurences;
+	 public static List<Integer> matchingStrings(List<String> strings, List<String> queries) {
+		    // Write your code here
+		    List<Integer> matchCount = new ArrayList<Integer>();
+		    int runningCount = 0;
+		    for(String str : queries) {
+		        for(String st : strings) {
+		            if(st.equals(str)) {
+		                runningCount++;
+		            }   
+		        }
+		        matchCount.add(runningCount);
+		        runningCount = 0;
+		    }
+		    return matchCount;
+		    
 
-	    }
+		    }
 	
 	public static void miniMaxSum(List<Integer> arr) {
 	    // Write your code here
