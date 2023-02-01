@@ -27,6 +27,16 @@ public class problemSolving {
 		
 //		whereDoItFit();
 //		numProgression(2, 4, 3, 1);
+		
+		List<Integer> minMax = new ArrayList<Integer>();
+		minMax.add(1);
+		minMax.add(11);
+		minMax.add(34);
+		minMax.add(89);
+		minMax.add(2);
+		minMax.add(1);
+		
+		miniMaxSum(minMax);
 	}
 	
 	public static String numProgression(int v1, int x1, int v2, int x2) {
@@ -140,6 +150,28 @@ public class problemSolving {
 	    }
 	    
 	    return occurences;
+
+	    }
+	
+	public static void miniMaxSum(List<Integer> arr) {
+	    // Write your code here
+	    long maxVal = arr.get(0);
+	    long minVal = arr.get(0);
+	    long rollingSum = 0;
+	    for (long i : arr) {
+	        rollingSum+=i;
+	        if(i > maxVal) {
+	            maxVal = i;
+	        }
+	        if(i < minVal) {
+	            minVal = i;
+	        }
+	    }
+	    long minSum = rollingSum - maxVal;
+	    long maxSum = rollingSum - minVal;
+	    
+	    System.out.println(minSum + " " + maxSum);
+	    
 
 	    }
 	
