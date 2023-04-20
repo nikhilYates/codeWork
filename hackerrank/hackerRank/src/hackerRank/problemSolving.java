@@ -1,5 +1,7 @@
 package hackerRank;
 import java.util.*;
+import java.util.regex.*;
+
 import java.math.BigInteger;
 
 public class problemSolving {
@@ -23,7 +25,7 @@ public class problemSolving {
 		List<Integer> countStr = new ArrayList<Integer>();
 		
 		countStr = matchingStrings(str1, queryStr);
-		System.out.println(countStr);
+		//System.out.println(countStr);
 		
 //		whereDoItFit();
 //		numProgression(2, 4, 3, 1);
@@ -36,8 +38,10 @@ public class problemSolving {
 		minMax.add(2);
 		minMax.add(1);
 		
-		miniMaxSum(minMax);
-		System.out.println(timeConversion("11:01:45PM"));
+		//miniMaxSum(minMax);
+//		System.out.println(timeConversion("11:01:45PM"));
+		
+		vowelsubstring("aeiousbbaeeeiou");
 	}
 	
 	public static String numProgression(int v1, int x1, int v2, int x2) {
@@ -137,7 +141,7 @@ public class problemSolving {
 	    }
 	
 	 public static List<Integer> matchingStrings(List<String> strings, List<String> queries) {
-		    // Write your code here
+//		     Write your code here
 		    List<Integer> matchCount = new ArrayList<Integer>();
 		    int runningCount = 0;
 		    for(String str : queries) {
@@ -198,6 +202,88 @@ public class problemSolving {
 	                return newHour + s.substring(2, 8);
 	            }
 	        }
+	    }
+	
+	public static long vowelsubstring(String s) {
+	    // Write your code here
+	    
+	        /* lets get the substring between the start and the next non-vowel. If "aeiou" is present, then we work to find 
+	         * total occurences of all vowels in the substring
+	         * if it is not there, then we move to the next substring (i.e., between 2 non-vowels, or the previous non-vowel and the end of line)
+	         */
+	         
+	         
+	        // these variables define the index of s that we are looking at (i.e., between two consonants)
+	        int startIndex = 0;
+	        int endIndex = 0;
+	         
+	        
+	        // store the number of substrings we find
+	        long substrCount = 0;
+	        
+	        
+	        // declare a string of vowels to check if the character is a consonant or vowel
+	        String vowString = "aeiou";
+	         
+	        for(int i = 0; i < s.length() - 1; i++) {
+	            
+	            // check if the current letter is a consonant
+	            if(isVowel(s.charAt(i), vowString)) {
+	                startIndex = i + 1;
+	                System.out.println("Start index = " + startIndex);
+	                
+	                // now find the end of the substring (i.e., either the next consonant or the end of the string s)
+	                for (int j = i + 2; j < s.length(); j++) {
+	                   
+	                    if(isVowel(s.charAt(j), vowString)) {
+	                        endIndex = j - 1;
+	                        substrCount += subSubstringCount(s.substring(startIndex, endIndex));
+	                    }
+	                    else {
+	                        // if there are no more consonants, then make the end of the string the endIndex 
+	                        endIndex = s.length() - 1;
+	                        substrCount += subSubstringCount(s.substring(startIndex, endIndex));
+	                    }    
+	                }
+	            }
+	            // else if there are no consonants, we will look at the entire substring
+	            if ( i == s.length() - 1 && substrCount == 0) {
+	                startIndex = 0;
+	                endIndex = s.length() - 1;
+	                substrCount = subSubstringCount(s.substring(startIndex, endIndex));
+	                //break;
+	            }
+	             
+	        }
+	        
+	        System.out.println(substrCount);
+	        
+	        return substrCount;
+	        
+	        
+	        
+	    }
+	    
+	    public static boolean isVowel(char c, String vowString) {
+	        return vowString.indexOf(c) == -1;
+	    }
+
+	    // helper method to be called on to find the number of substrings within each substring
+	    public static long subSubstringCount(String substring) {
+	        String vowels = "aeiou+";
+	        long count = 0;
+	        Pattern vowelSet = Pattern.compile(vowels);
+	        
+	        for(int i = 0; i < substring.length() - 1; i++) {
+	            Matcher vowelSetMatcher = vowelSet.matcher(substring.substring(i, substring.length() - 1));
+	            if(vowelSetMatcher.find()) {
+	                count++;
+	            }
+	        }
+	        
+	        return count;
+	        
+	        
 	    }
 	
 
